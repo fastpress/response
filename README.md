@@ -30,36 +30,172 @@ use Fastpress\Http\Response;
 $response = new Response();
 $response->setResponse(200, 'OK');
 ```
+## Methods
 
-**Setting Response Body**
-```php
-$response->setBody('Your response content here');
-```
+### `setContent(mixed $content): self`
 
-**Adding Headers**
-```php
-$response->addHeader('Content-Type', 'application/json');
-```
+Sets the content of the response.
 
-**Redirecting**
-```php
-$response->redirect('https://your-redirect-url.com', 301);
-```
+**Parameters:**
 
-**Disabling Browser Cache**
-```php
-$response->disableBrowserCache();
-```
+- `$content`: The content to send in the response.
+
+**Returns:**
+
+- The `Response` instance.
 
 
-## Contributing
-Contributions are welcome! Please feel free to submit a pull request or open issues to improve the library.
+### `setContentType(string $contentType, ?string $charset = null): self`
+
+Sets the content type and optional charset of the response.
+
+**Parameters:**
+
+- `$contentType`: The content type (e.g., 'text/html', 'application/json').
+- `$charset`: The charset (e.g., 'UTF-8').
+
+**Returns:**
+
+- The `Response` instance.
 
 
-## License
-This library is open-sourced software licensed under the MIT license.
+### `setStatusCode(int $code): self`
 
-## Support
-If you encounter any issues or have questions, please file them in the issues section on GitHub.
+Sets the HTTP status code of the response.
+
+**Parameters:**
+
+- `$code`: The HTTP status code (e.g., 200, 404, 500).
+
+**Returns:**
+
+- The `Response` instance.
 
 
+### `header(string $name, string $value): self`
+
+Adds a header to the response.
+
+**Parameters:**
+
+- `$name`: The header name.
+- `$value`: The header value.
+
+**Returns:**
+
+- The `Response` instance.
+
+
+### `json(mixed $data, int $status = 200): self`
+
+Sends a JSON response.
+
+**Parameters:**
+
+- `$data`: The data to encode as JSON.
+- `$status`: The HTTP status code.
+
+**Returns:**
+
+- The `Response` instance.
+
+
+### `download(string $filepath, ?string $filename = null): void`
+
+Triggers a file download.
+
+**Parameters:**
+
+- `$filepath`: The path to the file.
+- `$filename`: The filename to suggest to the browser.
+
+**Returns:**
+
+- `void`
+
+
+### `redirect(string $url, int $code = 302): void`
+
+Redirects to a given URL.
+
+**Parameters:**
+
+- `$url`: The URL to redirect to.
+- `$code`: The HTTP status code (301, 302, etc.).
+
+**Returns:**
+
+- `void`
+
+
+### `back(?string $fallback = '/'): void`
+
+Redirects to the referring URL or a fallback URL.
+
+**Parameters:**
+
+- `$fallback`: The fallback URL if no referrer is available.
+
+**Returns:**
+
+- `void`
+
+
+### `noCache(): self`
+
+Adds headers to prevent caching of the response.
+
+**Returns:**
+
+- The `Response` instance.
+
+
+### `withError(string $message, int $code = 400): self`
+
+Sends a JSON error response.
+
+**Parameters:**
+
+- `$message`: The error message.
+- `$code`: The HTTP status code.
+
+**Returns:**
+
+- The `Response` instance.
+
+
+### `withSuccess(mixed $data = null, string $message = 'Success'): self`
+
+Sends a JSON success response.
+
+**Parameters:**
+
+- `$data`: The data to include in the response.
+- `$message`: The success message.
+
+**Returns:**
+
+- The `Response` instance.
+
+
+### `send(): void`
+
+Sends the HTTP response.
+
+**Returns:**
+
+- `void`
+
+
+### `stream(callable $callback, int $bufferSize = 8192): void`
+
+Streams the response content.
+
+**Parameters:**
+
+- `$callback`: A callable that generates the response content in chunks.
+- `$bufferSize`: The buffer size for each chunk.
+
+**Returns:**
+
+- `void`

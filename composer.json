@@ -2,6 +2,7 @@
     "name": "fastpress/response",
     "description": "An efficient and flexible HTTP response handling library for PHP, designed to integrate seamlessly with the Fastpress framework. It offers easy-to-use methods for managing HTTP responses, headers, and status codes.",
     "type": "library",
+    "version": "0.1.1",
     "require": {
         "php": "^7.4 || ^8.0"
     },
@@ -24,7 +25,7 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Samson Daniel",
+            "name": "samayo",
             "email": "samayo@pm.me"
         }
     ],
