@@ -4,7 +4,7 @@
     "type": "library",
     "version": "0.1.2",
     "require": {
-        "php": "^7.4 || ^8.0"
+        "php": "^8.0"
     },
     "scripts": {
         "test": "phpunit",
@@ -30,15 +30,15 @@
         }
     ],
     "keywords": ["http", "response", "php", "fastpress", "http response", "framework"],
-    "homepage": "https://github.com/fastpress/http-response",
+    "homepage": "https://github.com/fastpress/response",
     "support": {
-        "issues": "https://github.com/fastpress/http-response/issues",
-        "source": "https://github.com/fastpress/http-response"
+        "issues": "https://github.com/fastpress/response/issues",
+        "source": "https://github.com/fastpress/response"
     },
     "config": {
         "optimize-autoloader": true,
         "platform": {
-            "php": "7.4"
+            "php": "8.0"
         }
     },
     "extra": {
