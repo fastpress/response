@@ -322,7 +322,7 @@ class Response
      */
     public function back(?string $fallback = '/'): void
     {
-        $referer = $_SERVER['HTTP_REFERER'] ?? $fallback;
+        $referer = $_SERVER['HTTP_REFERER'] ?? $fallback ?? '/';
         $this->redirect($referer);
     }
 
