@@ -158,6 +158,67 @@ class Response
     }
 
     /**
+     * Sets multiple headers at once.
+     *
+     * @param array<string, string> $headers An associative array of header names and values.
+     * @return $this
+     */
+    public function headers(array $headers): self
+    {
+        foreach ($headers as $name => $value) {
+            $this->headers[$name] = $value;
+        }
+        return $this;
+    }
+
+    /**
+     * Sets a cookie on the response.
+     *
+     * @param string $name The name of the cookie.
+     * @param string $value The value of the cookie.
+     * @param int $expires The expiration time as a Unix timestamp.
+     * @param string $path The path on the server where the cookie is available.
+     * @param string $domain The domain that the cookie is available to.
+     * @param bool $secure Whether the cookie should only be transmitted over HTTPS.
+     * @param bool $httponly Whether the cookie is accessible only through HTTP protocol.
+     * @param string $samesite The SameSite attribute (Lax, Strict, or None).
+     * @return $this
+     */
+    public function setCookie(
+        string $name,
+        string $value,
+        int $expires = 0,
+        string $path = '/',
+        string $domain = '',
+        bool $secure = false,
+        bool $httponly = true,
+        string $samesite = 'Lax'
+    ): self {
+        setcookie($name, $value, [
+            'expires' => $expires,
+            'path' => $path,
+            'domain' => $domain,
+            'secure' => $secure,
+            'httponly' => $httponly,
+            'samesite' => $samesite,
+        ]);
+        return $this;
+    }
+
+    /**
+     * Clears a cookie by setting its expiration in the past.
+     *
+     * @param string $name The name of the cookie.
+     * @param string $path The path on the server where the cookie was available.
+     * @param string $domain The domain that the cookie was available to.
+     * @return $this
+     */
+    public function clearCookie(string $name, string $path = '/', string $domain = ''): self
+    {
+        return $this->setCookie($name, '', time() - 3600, $path, $domain);
+    }
+
+    /**
      * Sends a JSON response.
      *
      * @param mixed $data The data to be encoded as JSON.
